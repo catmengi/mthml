@@ -85,7 +85,7 @@ static char* void_nodes[] = { //list of all void nodes given by chatGPT
     "wbr"
 };
 
-//TODO: make stream based
+//WARNING: TODO: fix large strings!!!!!!!!!!!!
 mm_handle HTMLParse(char* html){
     hstack node_stack = {0};
     mm_handle root_obj = {0};
@@ -242,8 +242,6 @@ void print_node(HTMLNode* node){
     // handle_vector_destroy(&node->children);
 }
 
-void mm_handle_debug_locks();
-
 int main(int argc, char* argv[]){
     assert(argc == 2);
     FILE* html = fopen(argv[1],"r");
@@ -262,5 +260,4 @@ int main(int argc, char* argv[]){
     print_node(node);
 
     mm_unlock(unlock);
-    mm_handle_debug_locks();
 }
